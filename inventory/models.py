@@ -32,7 +32,7 @@ class Comment(models.Model):
     published = models.DateTimeField(default=datetime.now)
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='comments')
 
-
+#add str def
 class Person(models.Model):
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)

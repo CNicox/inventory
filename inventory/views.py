@@ -8,7 +8,7 @@ from django.views.generic import ListView
 
 
 #class IndexView(ListView):
- #   template_name = 'inventory/index.html'
+ #  template_name = 'inventory/index.html'
 
 
 

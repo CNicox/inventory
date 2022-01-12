@@ -4,6 +4,7 @@ from .models import *
 """
 how to create admin console
 python manage.py createsuperuser admin admin500!
+runserver and they should be there
 """
 
 admin.site.register(Item)
