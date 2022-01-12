@@ -7,10 +7,12 @@ from django.views.generic import ListView
 #create your views here
 
 
-#class IndexView(ListView):
- #  template_name = 'inventory/index.html'
+class IndexView(ListView):
+    template_name = 'inventory/index.html'
+    model = Item
+    context_object_name = 'items'
 
 
-
-def index(request):
-    return render(request, "inventory/index.html")
+#this incase generic doesn't work for some reason
+#def index(request):
+#    return render(request, "inventory/index.html")

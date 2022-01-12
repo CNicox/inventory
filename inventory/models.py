@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 # Create your models here.
+
 #how to apply changes to the database (to models):
 #python manage.py makemigrations (commit changes)
 #python manage.py migrate (applies)
@@ -24,6 +25,8 @@ class Item(models.Model):
     equipment_category = models.ForeignKey('Equipment_category', on_delete=models.SET_NULL, null=True,
                                            related_name="items")  # if Equipment_category is deleted the value is set to 0 and items is how the field is referenced from Equipment_category
     department = models.ForeignKey('Department', on_delete=models.SET_NULL, null=True, related_name="items")
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Comment(models.Model):
@@ -38,14 +41,21 @@ class Person(models.Model):
     last_name = models.CharField(max_length=128)
     mobile_number = models.CharField(max_length=24, blank=True)
     email = models.EmailField(max_length=254, blank=True)
-
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
 
 
 class Equipment_category(models.Model):
     name = models.CharField(max_length=128)
 
+    def __str__(self):
+        return f'{self.name}'
+
 class Department(models.Model):
     name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return f'{self.name}'
 
 
 
