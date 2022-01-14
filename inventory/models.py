@@ -2,9 +2,12 @@ from django.db import models
 from datetime import datetime
 # Create your models here.
 
-#how to apply changes to the database (to models):
-#python manage.py makemigrations (commit changes)
-#python manage.py migrate (applies)
+'''
+how to apply changes to the database (to models):
+python manage.py makemigrations (commit changes)
+python manage.py migrate (applies)
+'''
+
 
 
 class Item(models.Model):
