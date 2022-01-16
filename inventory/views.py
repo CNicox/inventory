@@ -13,6 +13,8 @@ class IndexView(ListView):
     context_object_name = 'items'
 
 
+
+
 #this incase generic doesn't work for some reason
 #def index(request):
 #    return render(request, "inventory/index.html")
