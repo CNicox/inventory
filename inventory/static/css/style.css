@@ -1,0 +1,84 @@
+/* 
+  General style
+*/
+
+
+
+
+/* 
+  Login page style
+*/
+.login-body {
+  background-color: rgb(253, 253, 253);
+  border-radius: 30px;
+
+  box-shadow: 10px 10px rgb(153, 153, 173);
+}
+.login-header {
+  font-size: 21px;
+  font-weight: 200;
+  letter-spacing: .1rem;
+
+  margin-bottom: 20px;
+  margin-top: 12px;
+  margin-right: 20px;
+}
+
+.login-input > input {
+  width: 95%;
+  font-weight: 300;
+  border-radius: 7px;
+  border-color: rgb(165, 165, 165);
+  border-width: 1px;
+  padding-left: 7px;
+}
+
+.login-input > input:focus{
+  border-color: rgb(90, 89, 89) !important;
+  border-width: 1px !important;
+}
+
+
+.login-error {
+  font-size: 14px;
+  font-weight: 300;
+}
+ 
+.login-label {
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: .075rem;
+  margin-bottom: 2px;
+}
+.login-password-reset {
+  margin-right: 10px;
+
+  font-size: 13px;
+  font-weight: 300;
+}
+.login-password-reset:hover {
+  font-weight: 350;
+}
+.login-submit-button {
+  margin-right: 10px;
+
+  width: 55%;
+  height: 35px;
+  font-weight: 200;
+  font-size: 17px;
+
+  background-color: inherit;
+
+  border-radius: 7px;
+  border-width: 0.5px;
+  border-color: rgb(179, 175, 175);
+
+  transition: border-radius 1s, border-width 1s;
+}
+.login-submit-button:hover {
+  background-color: rgb(238, 235, 235);
+  border-width: 1px;
+  border-radius: 15px;
+
+  transition: border-radius 1s, border-width 1s, background-color 1s;
+}
