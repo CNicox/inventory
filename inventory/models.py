@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User #create user class
 # Create your models here.
 
 '''
@@ -7,7 +8,9 @@ how to apply changes to the database (to models):
 python manage.py makemigrations (commit changes)
 python manage.py migrate (applies)
 '''
-#test commit
+
+
+
 
 
 class Item(models.Model):
@@ -19,24 +22,32 @@ class Item(models.Model):
     properties =  models.CharField(max_length=500, blank=True)
     assignment_date = models.DateTimeField(blank=True) # need to configure so that this field refreshes each time a person field is changed
     notes = models.CharField(max_length=1000, blank=True)
-    #here are those additional fields
-    pin = models.CharField(max_length=10, blank=True)
-    puk = models.CharField(max_length=10, blank=True)
-    mobile_number = models.CharField(max_length=24, blank=True)
 
     owner = models.ForeignKey("Person", on_delete=models.SET_NULL, blank=True, null=True, related_name="items")
-    equipment_category = models.ForeignKey('Equipment_category', on_delete=models.SET_NULL, null=True,
+    equipment_category = models.ForeignKey('EquipmentCategory', on_delete=models.SET_NULL, null=True,
                                            related_name="items")  # if Equipment_category is deleted the value is set to 0 and items is how the field is referenced from Equipment_category
-    department = models.ForeignKey('Department', on_delete=models.SET_NULL, null=True, related_name="items")
+    department = models.ForeignKey("Department", on_delete=models.SET_NULL, null=True, related_name="items")
+
+
+
     def __str__(self):
         return f'{self.name}'
 
 
+class MobilePhone(models.Model):
+    pin = models.CharField(max_length=10, blank=True)
+    puk = models.CharField(max_length=10, blank=True)
+    mobile_number = models.CharField(max_length=24, blank=True)
+    item = models.OneToOneField("Item", on_delete=models.CASCADE,default=None,
+                                related_name="mobile_phone") #need to test
+    def __str__(self):
+        return f'{self.mobile_number}'
+
 class Comment(models.Model):
-    text = models.CharField(max_length=512)
+    content = models.CharField(max_length=512)
     author = models.CharField(max_length=128)
-    published = models.DateTimeField(default=datetime.now)
-    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='comments')
+    published_date = models.DateTimeField(default=datetime.now)
+    item = models.ForeignKey("Item", on_delete=models.CASCADE, related_name='comments')
 
 #add str def
 class Person(models.Model):
@@ -48,7 +59,7 @@ class Person(models.Model):
         return f'{self.first_name} {self.last_name}'
 
 
-class Equipment_category(models.Model):
+class EquipmentCategory(models.Model):
     name = models.CharField(max_length=128)
 
     def __str__(self):

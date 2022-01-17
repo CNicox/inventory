@@ -10,8 +10,9 @@ runserver and they should be there
 admin.site.register(Item)
 admin.site.register(Comment)
 admin.site.register(Person)
-admin.site.register(Equipment_category)
+admin.site.register(EquipmentCategory)
 admin.site.register(Department)
+admin.site.register(MobilePhone)
 
 
 
