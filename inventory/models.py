@@ -7,7 +7,7 @@ how to apply changes to the database (to models):
 python manage.py makemigrations (commit changes)
 python manage.py migrate (applies)
 '''
-
+#test commit
 
 
 class Item(models.Model):
