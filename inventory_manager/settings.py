@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-=e#27qg03)@tk^5o%*0(m&^jw6v=!ih%$23bs0i&4tt2#rk7c%
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+#added this
+AUTH_USER_MODEL = 'inventory.User'
 
 # Application definition
 
