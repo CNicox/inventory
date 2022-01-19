@@ -5,20 +5,57 @@
 
 {% block content %}
 
-{% for item in items %}
 
 <div class="row justify-content-center my-5">
-    <div class="col-4">
-        <p>{{ item.name }}</p>
-        <br>
-        <img src="{{ post.image.url }}" class="img-fluid">
+    <table>
+            <tr>
+        <th>Name</th>
+        <th>Item Model</th>
+        <th>Owner</th>
+        <th>Equipment Category</th>
+    </tr>
+        {% for item in items %}
 
-    </div>
-</div>
+    <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.item_model }}</td>
+        <td>{{ item.owner }}</td>
+        <td>{{ item.equipment_category }}</td>
 
 
-
+    </tr>
 
 {% endfor %}
+
+    </table>
+</div>
+<div class="text-center">
+    {% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }} ">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }} ">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }} ">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+    </div>
+
+
+
+
+
 
 {% endblock %}

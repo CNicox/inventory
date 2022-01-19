@@ -11,6 +11,7 @@ class IndexView(ListView):
     template_name = 'inventory/index.html'
     model = Item
     context_object_name = 'items'
+    paginate_by = 3
 
 
 
