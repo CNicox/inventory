@@ -1,17 +1,31 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
+
 
 from .models import User
 
-
+#backbound model or whatever
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='Password confirmation', widget=forms.PasswordInput)
 
+
     class Meta:
         model = User
         fields = ('email',)
+
+    #no static variables in form classes !!
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = 'id-exampleForm'
+        self.helper.form_class = 'blueForms'
+        self.helper.form_method = 'post'
+        self.helper.form_action = 'submit_survey'
+        self.helper.add_input(Submit('submit', 'Submit', css_class="btn-success"))
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")

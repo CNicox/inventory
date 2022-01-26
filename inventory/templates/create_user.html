@@ -1,9 +1,16 @@
 {% extends 'inventory/base.html' %}
+{% load crispy_forms_tags %}
 
 
 {% block title %}Inventory{% endblock %}
 
 {% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    {% crispy form %}
+
+</form>
 
 
 
