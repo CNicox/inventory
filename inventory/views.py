@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.contrib.auth.backends import BaseBackend
 from .forms import *
 
@@ -19,10 +19,17 @@ class IndexView(ListView):
     paginate_by = 3
 
 
-def registration_form(request):
-
+class RegistrationView(TemplateView):
+    template_name = 'registration/create_user.html'
     form = UserCreationForm()
-    return render(request, 'create_user.html', {'form' : form})
+
+
+ #   def registration_form_post(self, request):
+
+    #    form = UserCreationForm(request.POST)
+    #    if form.is_valid():
+    #        form.save()
+      #  return render(request, 'create_user.html', {'form' : form})
 '''
 
     if request.method == 'POST':
