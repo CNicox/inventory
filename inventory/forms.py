@@ -1,10 +1,23 @@
 from django import forms
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.auth.forms import ReadOnlyPasswordHashField, AuthenticationForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
 
 from .models import User
+
+
+class AuthForm(AuthenticationForm):
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = 'id-exampleForm'
+        self.helper.form_class = 'blueForms'
+        self.helper.form_method = 'post'
+        self.helper.form_action = 'submit_survey'
+        self.helper.add_input(Submit('submit', 'Submit', css_class="btn-success"))
 
 #backbound model or whatever
 class UserCreationForm(forms.ModelForm):

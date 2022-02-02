@@ -63,20 +63,22 @@ class ChangePasswordView(TemplateView):
 
 def login_request(request):
     if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
+        form = AuthForm(request, data=request.POST)
         if form.is_valid():
             email = form.cleaned_data.get('email')
+            print(email)
             password = form.cleaned_data.get('password')
             user = authenticate(email=email, password=password)
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {email}.")
-                return redirect("/inventory/registration/")
+                return redirect("/inventory/index/")
             else:
                 messages.error(request, "Invalid username or password.")
         else:
             messages.error(request, "Invalid username or password.")
-    form = AuthenticationForm()
+    form = AuthForm()
+    print(f'user {email} is authenticated')
     return render(request=request, template_name="registration/login.html", context={"form": form})
 
 
